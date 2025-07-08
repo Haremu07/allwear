@@ -1,9 +1,8 @@
-import React from "react";
 import Cards from "./Cards";
 import { useNavigate } from "react-router-dom";
-import man from "./src/assets/man6.png"
-import women from "./src/assets/woman1.png"
-import kid from "./src/assets/kid1.png"
+import man from "../assets/man6.png"
+import women from "../assets/woman1.png"
+import kid from "../assets/kid1.png"
 
 const Categories = () => {
     const navigate = useNavigate()

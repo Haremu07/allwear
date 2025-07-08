@@ -2,7 +2,7 @@ import React from "react";
 import Categories from "./Categories";
 import ArrivalsCard from "./ArrivalsCard";
 import { useNavigate } from "react-router-dom";
-import heroLady from "./src/assets/woman.png"
+import heroLady from "..//assets/woman.png"
 
 const LandingPage = () => {
   const navigate = useNavigate()
