@@ -10,7 +10,7 @@ const Register = () => {
     bg-cover bg-center bg-no-repeat rounded-lg shadow-md"
       ></div>
 
-      <div className="flex-1 h-full bg-transparent bg-amber-00 rounded-lg shadow-md flex flex-col p-5  border border-white text-white text-xl">
+      <div className="flex-1 h-full bg-transparent bg-amber-00 rounded-lg shadow-md flex flex-col p-5  text-white text-xl">
         <div className="w-full h-15   flex justify-between  ">
           <div className="w-full h-15 bg-green-00">
                 <h1
@@ -54,8 +54,8 @@ const Register = () => {
           <button  onClick={() => nav("/Login")} className="w-full h-13 rounded-2xl bg-white  cursor-pointer text-black">
             Sign Up
           </button>
-          <p className="flex justify-end gap-1">
-            Already have an account? <span className="cursor-pointer" onClick={() => nav("/Login")}> Log In</span>
+          <p className="flex justify-end gap-3">
+            Already have an account? <span className="cursor-pointer text-[#31240f]" onClick={() => nav("/Login")}> Log In</span>
           </p>
         </form>
       </div>

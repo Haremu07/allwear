@@ -6,13 +6,13 @@ const Login = () => {
   return (
     <div className="h-screen p-5 bg-[#7A5A26] flex gap-5">
       
-      <div className="flex-1 h-auto items-center justify-center bg-transparent bg-amber-00 rounded-lg shadow-md flex flex-col p-5  border border-white text-white text-xl">
+      <div className="flex-1 h-auto items-center justify-center bg-transparent bg-amber-00 rounded-lg shadow-md flex flex-col p-5   text-white text-xl">
         <div className="w-full h-15  flex  mb-20  ">
                <h1
           onClick={() => nav('/')}
           className={`text-2xl text-white font-bold cursor-pointer`} 
         >
-          ALLWEAR
+          {/* ALLWEAR */}
         </h1>
         </div>
 
@@ -40,9 +40,9 @@ const Login = () => {
           >
             Sign In
           </button>
-          <p className="flex justify-end gap-1">
+          <p className="flex justify-center gap-3">
             Don't have an account?{" "}
-            <span className=" cursor-pointer" onClick={() => nav("/register")}>
+            <span className=" cursor-pointer text-[#31240f]" onClick={() => nav("/register")}>
               {" "}
               Register
             </span>
