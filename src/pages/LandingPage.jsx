@@ -2,6 +2,7 @@ import React from "react";
 import Categories from "./Categories";
 import ArrivalsCard from "./ArrivalsCard";
 import { useNavigate } from "react-router-dom";
+import heroLady from "./src/assets/woman.png"
 
 const LandingPage = () => {
   const navigate = useNavigate()
@@ -9,7 +10,7 @@ const LandingPage = () => {
     <div className="w-full h-auto overflow-x-hidden  bg-[#cfb284] ">
       <div className="w-full  h-[660px] bg-[#B68B40]  flex flex-col md:flex-row ">
         <div className="flex-1 hidden  md:flex justify-center  ">
-          <img className="  mt-4" src="./src/assets/woman.png" alt="" />
+          <img className="  mt-4" src={heroLady} alt="" />
         </div>
         <div className="flex-1/3 bg-amber-00 text-[#6b3801]  p-5 flex justify-center flex-col items-center gap-3">
           <h1 className="text-7xl">Elevate Everybody,</h1>
