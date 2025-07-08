@@ -48,11 +48,11 @@ const CategoryPage = () => {
             <div
               key={product.id}
               onClick={() => navigate(`/details_page/${product.id}`)}
-              className="md:w-60 w-45 relative group cursor-pointer text-[#6b3801] overflow-hidden"
+              className="md:w-60 w-45 relative group rounded-xl  cursor-pointer text-[#6b3801] overflow-hidden"
             >
-              <div className="relative w-full h-60">
+              <div className="relative rounded-xl  w-full h-60">
                 <img
-                  className="w-full h-full object-cover bg-amber-900"
+                  className="w-full h-full rounded-xl  object-cover bg-amber-900"
                   src={product.image}
                   alt={product.name}
                 />

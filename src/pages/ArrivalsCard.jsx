@@ -32,14 +32,14 @@ const ArrivalsCard = () => {
         <div
           key={index}
           onClick={() => navigate(`/details_page/${products.id}`)}
-          className="relative group bg-red-00 w-40 sm:w-60 h-70 flex flex-col items-center justify-center cursor-pointer "
+          className="relative group bg-red-00 w-40 sm:w-60 h-70 flex  flex-col items-center justify-center cursor-pointer "
         >
           <button className="absolute top-40 cursor-pointer p-3 text-white bg-green-600 opacity-0 group-hover:opacity-100 transition-opacity">
             Add To Cart
           </button>
-          <div className="w-full h-55 bg-[#4e2b04] bg-center">
+          <div className="w-full h-55 rounded-xl  bg-[#4e2b04] bg-center">
             <img
-              className="w-full h-full object-cover"
+              className="w-full h-full rounded-xl  object-cover"
               src={
                 products?.image || "https://placehold.co/300x400?text=AllWear"
               }

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Cards = ({ img, text, onClick }) => {
   return (
-    <div className='flex flex-col gap-4  '>
+    <div className='flex flex-col gap-4 rounded-xl  '>
     <div className='w-90 h-80 bg-[#B68B40] flex justify-center  items-center cursor-pointer transition-transform duration-500 hover:scale-101 ' onClick={onClick}>
         <img className='h-full object-contain ' src={img} alt={text} />
     </div>
