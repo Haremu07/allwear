@@ -70,7 +70,7 @@ const CategoryPage = () => {
               </div>
               <div className="flex justify-center items-center flex-col mt-2">
                 <h3 className="text-lg font-semibold">{product.name}</h3>
-                <p className="text-sm text-gray-600">${product.price}</p>
+                <p className="text-sm ">${product.price}</p>
               </div>
             </div>
           ))}
