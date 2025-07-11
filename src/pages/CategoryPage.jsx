@@ -1,29 +1,33 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useCart } from "../global/CartContext";
+import { toast, ToastContainer } from "react-toastify";
 
 const CategoryPage = () => {
   const { categoryName } = useParams();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
 
-  const {id} = useParams()
-  const navigate = useNavigate()
   useEffect(() => {
     const fetchAndFilter = async () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          'https://mocki.io/v1/ce51d8b2-63e3-485a-bdb6-799da7cb4755'
+          "https://mocki.io/v1/ce51d8b2-63e3-485a-bdb6-799da7cb4755"
         );
         const filtered = response.data.filter(
-          (product) => product.category.toLowerCase() === categoryName.toLowerCase()
+          (product) =>
+            product.category.toLowerCase() === categoryName.toLowerCase()
         );
         setFilteredProducts(filtered);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error("Error fetching products:", error);
         setLoading(false);
       }
     };
@@ -31,11 +35,13 @@ const CategoryPage = () => {
     fetchAndFilter();
   }, [categoryName]);
 
+  const notify = () => toast("Added to cart")
+
   if (loading)
     return <p className="p-4 text-xl">Loading {categoryName} products...</p>;
-
   return (
     <div className="w-full mt-15  md:p-5 p-1 h-auto flex flex-col bg-[#cfb284]">
+      <ToastContainer/>
       <h1 className="text-3xl mb-6 capitalize text-[#e9dbcc]  font-bold">
         {categoryName} Wears
       </h1>
@@ -56,9 +62,9 @@ const CategoryPage = () => {
                   src={product.image}
                   alt={product.name}
                 />
-                <button
-                  className="p-2 text-white bg-green-600 cursor-pointer absolute bottom-3 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                >
+                <button 
+                onClick={(e) => {e.stopPropagation(), notify(), addToCart(product)}}
+                className="p-2 w-30 text-white bg-green-600 cursor-pointer absolute bottom-3 left-1/2 transform -translate-x-1/2 md:opacity-0 opacity-100 group-hover:opacity-100 transition-opacity duration-300">
                   Add To Cart
                 </button>
               </div>

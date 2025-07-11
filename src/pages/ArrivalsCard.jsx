@@ -1,12 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useCart } from "../global/CartContext";
+import { toast, ToastContainer } from "react-toastify";
+ 
 
 const ArrivalsCard = () => {
   const [product, setProduct] = useState([]);
    
   const navigate = useNavigate()
   const {id} = useParams()
+  const {addToCart} = useCart()
   console.log("the id is:", id)
 
   
@@ -26,15 +30,20 @@ const ArrivalsCard = () => {
     handleProducts();
   }, []);
 
+   const notify = () => toast("Added to cart")
+
   return (
     <div className="w-full h-auto flex justify-center   sm:gap-3 gap-5 text-[#6b3801]  flex-wrap">
+      <ToastContainer/>
       {product?.map((products, index) => (
         <div
           key={index}
           onClick={() => navigate(`/details_page/${products.id}`)}
           className="relative group bg-red-00 w-40 sm:w-60 h-70 flex  flex-col items-center justify-center cursor-pointer "
         >
-          <button className="absolute top-40 cursor-pointer p-3 text-white bg-green-600 opacity-0 group-hover:opacity-100 transition-opacity">
+          <button 
+          onClick={(e) => {e.stopPropagation(), notify(), addToCart(products)}}
+          className="absolute top-40 cursor-pointer p-3 text-white bg-green-600  opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
             Add To Cart
           </button>
           <div className="w-full h-55 rounded-xl  bg-[#4e2b04] bg-center">

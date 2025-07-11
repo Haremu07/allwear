@@ -9,6 +9,8 @@ import Login from './auth/Login'
 import Categories from './pages/Categories'
 import CategoryPage from './pages/CategoryPage'
 import DetailsPage from './pages/DetailsPage'
+import CheckoutPage from './pages/CheckoutPage'
+import CartPage from './pages/CartPage'
 
 const App = () => {
   const routes = createBrowserRouter([
@@ -26,6 +28,18 @@ const App = () => {
             {
                 path: "footer",
                 element: <Footer/>
+            },
+            {
+                path: "checkout",
+                element: <CheckoutPage/>
+            },
+            {
+                path: "cart_page",
+                element: <CartPage/>
+            },
+            {
+                path: "*",
+                element: <LandingPage/>
             },
             {
                 path: "details_page/:id",
