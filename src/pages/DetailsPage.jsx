@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCart } from "../global/CartContext";
 import { toast, ToastContainer } from "react-toastify";
@@ -7,7 +7,6 @@ import { toast, ToastContainer } from "react-toastify";
 const DetailsPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-  console.log(`Product ID from URL:  , id`);
   const navigate = useNavigate()
 
 
@@ -35,7 +34,7 @@ const DetailsPage = () => {
   if (!product) return <p className="p-6 text-lg">Loading product...</p>;
 
   const {addToCart} = useCart()
-
+ 
   const notify = () => toast("Added to cart")
   return (
     <div className="min-h-screen  bg-[#cfb284] text-white mt-16 p-3 flex flex-col md:flex-row gap-3">

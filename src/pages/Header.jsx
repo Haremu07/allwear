@@ -9,8 +9,13 @@ const Header = () => {
 
   const isActive = (path) => location.pathname.includes(path);
   const { cartItems } = useCart();
+ 
 
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log("this is the user", user)
+
 
   return (
     <div className="w-full bg-[#B68B40] fixed top-0 z-50 text-[#e9dbcc] px-6 py-4">
@@ -66,18 +71,36 @@ const Header = () => {
             )}
           </p>
 
-          <button
-            onClick={() => navigate("/login")}
-            className={"cursor-pointer hover:text-amber-950 "}
-          >
-            Sign in
-          </button>
-          <button
-            onClick={() => navigate("/register")}
-            className={"cursor-pointer hover:text-amber-950 "}
-          >
-            Sign up
-          </button>
+          {!user ? (
+            <>
+              <button
+                onClick={() => navigate("/login")}
+                className={"cursor-pointer hover:text-amber-950 "}
+              >
+                Sign in
+              </button>
+              <button
+                onClick={() => navigate("/register")}
+                className={"cursor-pointer hover:text-amber-950 "}
+              >
+                Sign up
+              </button>
+            </>
+          ) : (
+            <>
+              <span>Hi, {user?.fullName || "User"} </span>
+              <button
+              className="cursor-pointer"
+                onClick={() => {
+                  localStorage.removeItem("userData");
+                  setIsMenuOpen(false);
+                  navigate("/login");
+                }}
+              >
+                Logout
+              </button>{" "}
+            </>
+          )}
         </div>
 
         <div className="flex items-center gap-4 md:hidden">
@@ -136,18 +159,36 @@ const Header = () => {
             KIDS
           </p>
           <div className="flex flex-col gap-2 pt-2 items-end border-t border-[#e9dbcc]/20">
-            <button
-              onClick={() => navigate("/login")}
-              className={"text-left cursor-pointer hover:text-amber-950 "}
-            >
-              Sign in
-            </button>
-            <button
-              onClick={() => navigate("/register")}
-              className={"text-left cursor-pointer hover:text-amber-950 "}
-            >
-              Sign up
-            </button>
+            {!user ? (
+              <>
+                <button
+                  onClick={() => navigate("/login")}
+                  className="text-left cursor-pointer hover:text-amber-950"
+                >
+                  Sign in
+                </button>
+                <button
+                  onClick={() => navigate("/register")}
+                  className="text-left cursor-pointer hover:text-amber-950"
+                >
+                  Sign up
+                </button>
+              </>
+            ) : (
+              <>
+                <span className="text-left">Hi, {user?.fullName}</span>
+                <button
+                  onClick={() => {
+                    localStorage.removeItem("userData");
+                    setIsMenuOpen(false);
+                    navigate("/login");
+                  }}
+                  className="text-left cursor-pointer hover:text-amber-950"
+                >
+                  Logout
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}

@@ -21,9 +21,7 @@ const CheckoutPage = () => {
       </h1>
 
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8">
-        {/* Left: Form */}
         <div className="w-full lg:w-2/3 bg-white p-6 rounded shadow-md space-y-6">
-          {/* Contact Info */}
           <div>
             <h2 className="text-xl font-semibold mb-2">Contact Information</h2>
             <input
@@ -33,7 +31,6 @@ const CheckoutPage = () => {
             />
           </div>
 
-          {/* Shipping Address */}
           <div>
             <h2 className="text-xl font-semibold mb-2">Shipping Address</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -75,7 +72,6 @@ const CheckoutPage = () => {
             </div>
           </div>
 
-          {/* Payment */}
           <div>
             <h2 className="text-xl font-semibold mb-2">Payment Method</h2>
             <select className="w-full border p-3 rounded">
@@ -87,7 +83,6 @@ const CheckoutPage = () => {
           </div>
         </div>
 
-        {/* Right: Order Summary */}
         <div className="w-full lg:w-1/3 bg-white p-6 rounded shadow-md">
           <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
 
