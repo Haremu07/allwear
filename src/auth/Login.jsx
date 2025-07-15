@@ -6,7 +6,7 @@ import { useCart } from "../global/CartContext";
 
 const Login = () => {
   const nav = useNavigate();
-  const { handleLogIn } = useCart()
+  const { setUser, setIsLoggedIn } = useCart()
   
   const [data, setData] = useState({
     email: "",
@@ -43,7 +43,10 @@ const Login = () => {
     return;
   }
 
-  handleLogIn(storedUser);  
+  // handleLogIn(storedUser);  
+    setIsLoggedIn(true);
+  setUser(storedUser);
+
 
 
   toast("Login successful!");
@@ -66,7 +69,7 @@ const Login = () => {
             onClick={() => nav("/")}
             className={`text-2xl text-white font-bold cursor-pointer`}
           >
-            {/* ALLWEAR */}
+            ALLWEAR
           </h1>
         </div>
 

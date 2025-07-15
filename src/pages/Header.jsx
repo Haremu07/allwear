@@ -8,14 +8,16 @@ const Header = () => {
   const location = useLocation();
 
   const isActive = (path) => location.pathname.includes(path);
-  const { cartItems } = useCart();
- 
+  const { cartItems, user, isLoggedIn, handleLogOut, handleDelete } = useCart();
+  console.log("is log in", isLoggedIn);
+  // Just below the function, for testing
+  console.log("User after logout:", user);
+  console.log("Logged in after logout:", isLoggedIn);
 
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
-  const user = JSON.parse(localStorage.getItem("user"));
-  console.log("this is the user", user)
-
+  // const user = JSON.parse(localStorage.getItem("user"));
+  // console.log("this is the user", user)
 
   return (
     <div className="w-full bg-[#B68B40] fixed top-0 z-50 text-[#e9dbcc] px-6 py-4">
@@ -90,15 +92,25 @@ const Header = () => {
             <>
               <span>Hi, {user?.fullName || "User"} </span>
               <button
-              className="cursor-pointer"
+                className="cursor-pointer hover:text-amber-950"
                 onClick={() => {
-                  localStorage.removeItem("userData");
+                  handleLogOut();
                   setIsMenuOpen(false);
                   navigate("/login");
                 }}
               >
                 Logout
               </button>{" "}
+              <button
+                className="cursor-pointer hover:text-red-500"
+                onClick={() => {
+                  handleDelete();
+                  setIsMenuOpen(false);
+                  navigate("/login");
+                }}
+              >
+                Delete Account
+              </button>
             </>
           )}
         </div>
@@ -117,6 +129,11 @@ const Header = () => {
               </span>
             )}
           </div>
+          {!isLoggedIn ? (
+            <span className="text-left">Hi, User</span>
+          ) : (
+            <span className="text-left">Hi, {user?.fullName}</span>
+          )}
           <button
             className="text-2xl"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -159,7 +176,7 @@ const Header = () => {
             KIDS
           </p>
           <div className="flex flex-col gap-2 pt-2 items-end border-t border-[#e9dbcc]/20">
-            {!user ? (
+            {!isLoggedIn ? (
               <>
                 <button
                   onClick={() => navigate("/login")}
@@ -176,16 +193,26 @@ const Header = () => {
               </>
             ) : (
               <>
-                <span className="text-left">Hi, {user?.fullName}</span>
+                {/* <span className="text-left">Hi, {user?.fullName}</span> */}
                 <button
                   onClick={() => {
-                    localStorage.removeItem("userData");
+                    handleLogOut();
                     setIsMenuOpen(false);
                     navigate("/login");
                   }}
                   className="text-left cursor-pointer hover:text-amber-950"
                 >
                   Logout
+                </button>
+                <button
+                  className="cursor-pointer hover:text-red-500"
+                  onClick={() => {
+                    handleDelete();
+                    setIsMenuOpen(false);
+                    navigate("/login");
+                  }}
+                >
+                  Delete Account
                 </button>
               </>
             )}

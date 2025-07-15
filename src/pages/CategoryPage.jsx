@@ -35,7 +35,7 @@ const CategoryPage = () => {
     fetchAndFilter();
   }, [categoryName]);
 
-  const notify = () => toast("Added to cart")
+  // const notify = () => toast("Added to cart")
 
   if (loading)
     return <p className="p-4 text-xl">Loading {categoryName} products...</p>;
@@ -63,7 +63,7 @@ const CategoryPage = () => {
                   alt={product.name}
                 />
                 <button 
-                onClick={(e) => {e.stopPropagation(), notify(), addToCart(product)}}
+                onClick={(e) => {e.stopPropagation(), addToCart(product)}}
                 className="p-2 w-30 text-white bg-green-600 cursor-pointer absolute bottom-3 left-1/2 transform -translate-x-1/2 md:opacity-0 opacity-100 group-hover:opacity-100 transition-opacity duration-300">
                   Add To Cart
                 </button>

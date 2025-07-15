@@ -35,7 +35,7 @@ const DetailsPage = () => {
 
   const {addToCart} = useCart()
  
-  const notify = () => toast("Added to cart")
+  // const notify = () => toast("Added to cart")
   return (
     <div className="min-h-screen  bg-[#cfb284] text-white mt-16 p-3 flex flex-col md:flex-row gap-3">
       <ToastContainer/>
@@ -53,13 +53,10 @@ const DetailsPage = () => {
         <p className="text-2xl font-semibold text-white">${product?.price}</p>
        <div className="flex gap-3">
          <button
-          onClick={() => {notify(),  addToCart(product)}}
+          onClick={() => {  addToCart(product)}}
         className="bg-green-700 text-white cursor-pointer py-2 px-4 mt-4 rounded hover:bg-green-800">
           Add to Cart
         </button>
-        <button 
-        onClick={() => navigate("/checkout")}
-        className="bg-green-700 text-white cursor-pointer py-2 px-4 mt-4 rounded hover:bg-green-800">Proceed to Checkout</button>
        </div>
       </div>
     </div>

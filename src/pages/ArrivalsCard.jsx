@@ -29,7 +29,7 @@ const ArrivalsCard = () => {
     handleProducts();
   }, []);
 
-  const notify = () => toast("Added to cart");
+  // const notify = () => toast("Added to cart");
 
   return (
     <div className="w-full h-auto flex justify-center   sm:gap-3 gap-5 text-[#6b3801]  flex-wrap">
@@ -45,7 +45,7 @@ const ArrivalsCard = () => {
         >
           <button
             onClick={(e) => {
-              e.stopPropagation(), notify(), addToCart(products);
+              e.stopPropagation(), addToCart(products);
             }}
             className="absolute top-40 cursor-pointer p-3 text-white bg-green-600  opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity"
           >

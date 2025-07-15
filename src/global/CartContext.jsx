@@ -6,67 +6,52 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
+  const [userId, setUserId] = useState("guest");
 
-  // // ✅ Get current user's ID from localStorage
-  // const getCurrentUserId = () => {
-  //   const storedUser = JSON.parse(localStorage.getItem("user"));
-  //   return storedUser?.id || "guest"; // fallback to 'guest'
-  // };
-
-  const getCurrentUserId = () => {
-    const user = JSON.parse(localStorage.getItem("user")); // <-- Match the login key
-    return user?.id || "guest";
-  };
-  const userId = getCurrentUserId();
-
- 
-
+  // ✅ Get user from localStorage
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
-      setIsLoggedIn(true);
       setUser(storedUser);
+      setIsLoggedIn(true);
+      setUserId(storedUser.id || "guest"); // ✅ Set ID from user
+    } else {
+      setUser(null);
+      setIsLoggedIn(false);
+      setUserId("guest"); // ✅ Always fallback
     }
   }, []);
 
-  // ✅ Load cart for the current user on mount
+  // ✅ Load cart for current userId
   useEffect(() => {
+    if (!userId) return;
+
     const savedCart = localStorage.getItem(`cart_${userId}`);
     if (savedCart) {
       setCartItems(JSON.parse(savedCart));
     }
   }, [userId]);
 
-  // ✅ Save cart to localStorage for this user when cart changes
+  // ✅ Save cart when items or userId changes
   useEffect(() => {
+    if (!userId) return;
     localStorage.setItem(`cart_${userId}`, JSON.stringify(cartItems));
   }, [cartItems, userId]);
 
-  // ✅ Check login state on app load
-  // useEffect(() => {
-  //   const storedUser = JSON.parse(localStorage.getItem("user"));
-  //   if (storedUser) {
-  //     setIsLoggedIn(true);
-  //     setUser(storedUser);
-  //   }
-  // }, []);
-
-  // ✅ Handle login
   const handleLogIn = (user) => {
     localStorage.setItem("user", JSON.stringify(user));
     setUser(user);
     setIsLoggedIn(true);
+    setUserId(user.id || "guest");
   };
 
-  // ✅ Handle logout
   const handleLogOut = () => {
-    localStorage.removeItem("user");
     setUser(null);
     setIsLoggedIn(false);
+    setUserId("guest");
     setCartItems([]); // Optional: clear cart on logout
   };
 
-  // ✅ Cart logic
   const addToCart = (item) => {
     setCartItems((prev) => {
       const exists = prev.find((p) => p.id === item.id);
@@ -106,9 +91,12 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         clearCart,
         isLoggedIn,
+        setIsLoggedIn,
         handleLogIn,
         handleLogOut,
         user,
+        setUser,
+        userId,
       }}
     >
       {children}

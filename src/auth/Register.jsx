@@ -25,7 +25,6 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // ✅ Validate all fields
     if (
       !data.fullName.trim() ||
       !data.email.trim() ||
@@ -48,7 +47,7 @@ const Register = () => {
       return;
     }
 
-    if (data.phoneNumber.length < 11) {
+    if (data.phoneNumber.length === 10) {
       toast.error("Please enter a valid phone number.");
       return;
     }
