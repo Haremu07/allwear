@@ -45,16 +45,17 @@ const App = () => {
           path: "category/:categoryName",
           element: <CategoryPage />,
         },
+        {
+          path: "checkout",
+          element: (
+            <Private>
+              <CheckoutPage />
+            </Private>
+          ),
+        },
       ],
     },
-    {
-      path: "checkout",
-      element: (
-        <Private>
-          <CheckoutPage />
-        </Private>
-      ),
-    },
+
     {
       path: "register",
       element: <Register />,
